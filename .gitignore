@@ -1,0 +1,13 @@
+# Cursor workspace metadata
+.cursor/
+
+# Python virtual environment
+.venv/
+venv/
+ENV/
+
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd 

@@ -34,7 +34,32 @@ O projeto consiste em um servidor MCP (Model Context Protocol) que expõe uma fe
   uv sync
   ```
 
-### 2. Configuração do WAHA (WhatsApp HTTP API)
+### 2. Configuração do Servidor MCP no Cursor (Opcional)
+Para facilitar a execução do servidor MCP diretamente pelo Cursor durante o desenvolvimento, você pode criar um arquivo de configuração específico.
+
+1.  Crie uma pasta chamada `.cursor` na raiz do seu projeto (se ainda não existir).
+2.  Dentro da pasta `.cursor`, crie um arquivo chamado `mcp.json`.
+3.  Adicione o seguinte conteúdo ao arquivo `mcp.json`:
+
+    ```json
+    {
+        "mcpServers": {
+            "waha": { // Você pode nomear este servidor como preferir
+                "command": "uv",
+                "args": [
+                    "--directory",
+                    "/CAMINHO/ABSOLUTO/PARA/SEU/PROJETO/mcpWAHA", // ATENÇÃO: Substitua pelo caminho absoluto do seu projeto!
+                    "run",
+                    "whatsapp_sender.py"
+                ]
+            }
+        }
+    }
+    ```
+
+    **Importante:** Substitua `/CAMINHO/ABSOLUTO/PARA/SEU/PROJETO/mcpWAHA` pelo caminho absoluto correto para a pasta raiz deste projeto no seu computador.
+
+### 3. Configuração do WAHA (WhatsApp HTTP API)
 Siga os passos abaixo para configurar e executar o servidor WAHA localmente usando Docker:
 
 1.  **Baixar a imagem Docker do WAHA para ARM:**
@@ -57,8 +82,8 @@ Siga os passos abaixo para configurar e executar o servidor WAHA localmente usan
     *   Escaneie o QR Code exibido utilizando o aplicativo WhatsApp no seu celular (Configurações > Aparelhos conectados > Conectar um aparelho).
     *   Aguarde a autenticação e sincronização. A sessão "default" deve estar ativa.
 
-### 3. Utilizando o Cliente MCP (Ex: Cursor)
-1.  Com o servidor WAHA configurado (conforme passo 2) e o servidor MCP deste projeto em execução (embora os passos para execução não estejam detalhados aqui).
+### 4. Utilizando o Cliente MCP (Ex: Cursor)
+1.  Com o servidor WAHA configurado (conforme passo 3) e o servidor MCP deste projeto em execução (seja via Cursor com a configuração acima, ou rodando `uv run whatsapp_sender.py` manualmente no seu terminal após ativar o ambiente virtual).
 2.  Utilize um cliente MCP, como o Cursor, para interagir com o servidor.
 3.  Você pode testar a tool `send_message` diretamente:
     *   Ex: "tool call send_message com phone_number='+5511999999999' e message='Olá do MCP!'"
