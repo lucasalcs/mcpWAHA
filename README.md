@@ -91,6 +91,9 @@ Siga os passos abaixo para configurar e executar o servidor WAHA localmente usan
     *   Ex: "Envie uma mensagem de bom dia para o João" (assumindo que "João" está no seu resource de contatos).
 
 ## Demonstração de Funcionalidade
-A pasta `prints_usage/` neste repositório contém alguns prints de tela que demonstram o correto funcionamento do servidor MCP e da tool `send_message`, incluindo a interação com o resource `contatos`.
+A pasta `prints_usage/` neste repositório contém prints de tela que demonstram o correto funcionamento do servidor MCP. Ela está organizada da seguinte forma:
+
+-   `prints_usage/cursor_usage/`: Contém screenshots relacionados à configuração e uso do servidor MCP com o editor Cursor.
+-   `prints_usage/claude_desktop_usage/`: Apresenta screenshots da comunicação com o servidor MCP utilizando um cliente desktop (Claude), demonstrando o uso da tool `send_message` e do resource `contatos`, confirmando que tudo está funcionando corretamente.
 
 Este setup permitirá o envio de mensagens WhatsApp através do servidor MCP, utilizando o WAHA como gateway.
