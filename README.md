@@ -82,13 +82,39 @@ Siga os passos abaixo para configurar e executar o servidor WAHA localmente usan
     *   Escaneie o QR Code exibido utilizando o aplicativo WhatsApp no seu celular (Configurações > Aparelhos conectados > Conectar um aparelho).
     *   Aguarde a autenticação e sincronização. A sessão "default" deve estar ativa.
 
-### 4. Utilizando o Cliente MCP (Ex: Cursor)
-1.  Com o servidor WAHA configurado (conforme passo 3) e o servidor MCP deste projeto em execução (seja via Cursor com a configuração acima, ou rodando `uv run whatsapp_sender.py` manualmente no seu terminal após ativar o ambiente virtual).
-2.  Utilize um cliente MCP, como o Cursor, para interagir com o servidor.
-3.  Você pode testar a tool `send_message` diretamente:
+### 4. Utilizando Clientes MCP
+Com o servidor WAHA configurado (conforme passo 3) e o servidor MCP deste projeto em execução (seja via Cursor com a configuração do passo 2, ou rodando `uv run whatsapp_sender.py` manualmente no seu terminal após ativar o ambiente virtual), você pode utilizar diferentes clientes MCP para interagir com ele.
+
+#### a. Cursor
+1.  Utilize o Cursor para interagir com o servidor.
+2.  Você pode testar a tool `send_message` diretamente:
     *   Ex: "tool call send_message com phone_number='+5511999999999' e message='Olá do MCP!'"
-4.  Você pode testar o resource `contatos`:
+3.  Você pode testar o resource `contatos`:
     *   Ex: "Envie uma mensagem de bom dia para o João" (assumindo que "João" está no seu resource de contatos).
+
+#### b. Claude Desktop
+
+##### Utilizando Ferramentas (Tools) no Claude Desktop
+1.  **Identifique o Ícone de Ferramentas:** Na parte inferior direita da janela de entrada do Claude Desktop, você verá um ícone de martelo 🛠️. Este ícone indica que o Claude reconheceu as ferramentas disponíveis através do seu servidor MCP.
+2.  **Acesse as Ferramentas:**
+    *   Clique no ícone de martelo para visualizar a lista de ferramentas disponíveis.
+    *   Selecione a ferramenta desejada, como `send_message`.
+3.  **Utilize as Ferramentas via Prompt:**
+    *   Você pode chamar as ferramentas diretamente em suas mensagens. Por exemplo:
+        "Envie uma mensagem para +5511912345678 dizendo 'Olá, esta é uma mensagem de teste via WAHA!'"
+    *   O Claude identificará a intenção e utilizará a ferramenta correspondente, solicitando sua autorização antes de executar a ação.
+
+##### Utilizando Recursos (Resources) no Claude Desktop
+1.  **Acesse o Ícone de Anexos:** Na interface do Claude Desktop, clique no ícone de clipe de papel 📎 para abrir o menu de anexos.
+2.  **Selecione o Servidor MCP:**
+    *   Dentro do menu de anexos, você verá uma lista dos servidores MCP disponíveis.
+    *   Escolha o seu servidor (ex: `waha`, conforme configurado no `mcp.json` ou o nome que seu servidor MCP anuncia).
+3.  **Anexe Recursos:**
+    *   Após selecionar o servidor, você verá os recursos disponíveis (ex: `contatos`).
+    *   Escolha o recurso que deseja anexar à conversa.
+4.  **Interaja com os Recursos:**
+    *   Uma vez anexado, você pode referenciar o recurso em suas mensagens. Por exemplo:
+        "Por favor, leia o conteúdo do recurso `contatos` anexado e forneça um resumo." ou "Envie uma mensagem de bom dia para o João" (o Claude usará o resource `contatos` se anexado).
 
 ## Demonstração de Funcionalidade
 A pasta `prints_usage/` neste repositório contém prints de tela que demonstram o correto funcionamento do servidor MCP. Ela está organizada da seguinte forma:
